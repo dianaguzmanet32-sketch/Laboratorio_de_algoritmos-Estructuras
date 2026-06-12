@@ -1,0 +1,444 @@
+﻿Bloque 3
+ using System;
+
+
+namespace Bloque3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("--Bloque 3--");
+            Console.WriteLine("1) Votacion");
+            Console.WriteLine("2) Impares");
+            Console.WriteLine("3) Contar letra");
+            Console.WriteLine("4) Banco");
+            Console.WriteLine("5) Divisibles");
+            Console.WriteLine("6) Letra a numero");
+            Console.WriteLine("7) Adivinar");
+            Console.WriteLine("8) Invertidas");
+            Console.WriteLine("9) Frecuencia");
+            Console.WriteLine("10) Login");
+            Console.WriteLine("11) Rangos");
+            Console.WriteLine("12) IMC");
+            Console.WriteLine("13) Piramide");
+            Console.WriteLine("14) Vocales");
+
+
+            Console.Write("Opcion: ");
+            string opcion = Console.ReadLine();
+
+
+            if (opcion == "1")
+                Votacion();
+            else if (opcion == "2")
+                Impares();
+            else if (opcion == "3")
+                ContarLetra();
+            else if (opcion == "4")
+                Banco();
+            else if (opcion == "5")
+                Divisibles();
+            else if (opcion == "6")
+                LetraNumero();
+            else if (opcion == "7")
+                Adivinar();
+            else if (opcion == "8")
+                Invertidas();
+            else if (opcion == "9")
+                Frecuencia();
+            else if (opcion == "10")
+                Login();
+            else if (opcion == "11")
+                Rangos();
+            else if (opcion == "12")
+                IMC();
+            else if (opcion == "13")
+                Piramide();
+            else if (opcion == "14")
+                Vocales();
+            else
+                Console.WriteLine("Opcion invalida");
+        }
+
+
+        static void Votacion()
+        {
+            int a = 0, b = 0, c = 0;
+
+
+            while (true)
+            {
+                Console.Write("Voto (A/B/C o terminar): ");
+                string v = Console.ReadLine();
+
+
+                if (v == "terminar")
+                {
+                    break;
+                }
+                if (v == "A")
+                { 
+                    a++;
+                }
+                if (v == "B")
+                { 
+                    b++;
+                }
+                if (v == "C")
+                { 
+                    c++;
+                }
+            }
+
+
+            Console.WriteLine("A = " + a);
+            Console.WriteLine("B = " + b);
+            Console.WriteLine("C = " + c);
+        }
+
+
+        static void Impares()
+        {
+            Console.Write("Numero: ");
+            int num = int.Parse(Console.ReadLine());
+
+
+            if (num < 1)
+            { 
+                Console.WriteLine("Error");
+            }
+            else
+            {
+                for (int i = 1; i <= num; i = i + 2)
+                { 
+                    Console.Write(i + " ");
+                }   
+            }
+        }
+
+
+        static void ContarLetra()
+        {
+            Console.Write("Palabra: ");
+            string palabra = Console.ReadLine();
+
+
+            Console.Write("Letra: ");
+            string letra = Console.ReadLine();
+
+
+            int cuenta = 0;
+
+
+            for (int i = 0; i < palabra.Length; i++)
+            {
+                if (palabra.Substring(i, 1) == letra)
+                { 
+                    cuenta++;
+                }
+            }
+            Console.WriteLine(cuenta);
+        }
+
+
+        static void Banco()
+        {
+            double saldo = 1000;
+
+
+            while (true)
+            {
+                Console.WriteLine("---Banco---");
+                Console.WriteLine("Saldo: " + saldo);
+                Console.WriteLine("1.Depositar");
+                Console.WriteLine("2.Retirar");
+                Console.WriteLine("3.Salir");
+
+
+                string opcion = Console.ReadLine();
+
+
+                Console.Write("Monto: ");
+                double monto = double.Parse(Console.ReadLine());
+
+
+                if (opcion == "1")
+                {
+                    saldo += monto;
+                }
+                if (opcion== "2" && monto <= saldo)
+                {
+                    saldo = saldo - monto;
+                }
+                if (opcion == "3")
+                {
+                    break;
+                }
+            }
+        }
+
+
+        static void Divisibles()
+        {
+            int contador = 0;
+            int num = 1;
+
+
+            while (contador < 50)
+            {
+                bool dos = num % 2 == 0;
+                bool cinco = num % 5 == 0;
+
+
+                if ((dos || cinco) && !(dos && cinco))
+                {
+                    Console.Write(num + " ");
+                    contador++;
+                }
+
+
+                num++;
+            }
+        }
+
+
+        static void LetraNumero()
+        {
+            Console.Write("Palabra: ");
+            string palabra = Console.ReadLine().ToUpper();
+
+
+            for (int i = 0; i < palabra.Length; i++)
+            {
+                int n = (int)palabra[i] - 64;
+
+
+                if (n > 0 && n < 27)
+                    Console.Write(n + " ");
+            }
+        }
+
+
+        static void Adivinar()
+        {
+            Console.Write("Ingrese el numero secreto: ");
+            int secreto = int.Parse(Console.ReadLine());
+
+
+            int intentos = 0;
+            int num = 0;
+
+
+            while (num != secreto)
+            {
+                Console.Write("Adivina: ");
+                num = int.Parse(Console.ReadLine());
+
+
+                intentos++;
+
+
+                if (num < secreto)
+                {
+                    Console.WriteLine("Mas grande");
+                }
+                else if (num > secreto)
+                {
+                    Console.WriteLine("Mas chico");
+                }
+            }
+
+
+            Console.WriteLine("Ganaste en " + intentos + " intentos");
+        }
+
+
+        static void Invertidas()
+        {
+            Console.Write("Frase: ");
+            string frase = Console.ReadLine();
+            string[] palabras = frase.Split(' ');
+
+
+            for (int i = 0; i < palabras.Length; i++)
+            {
+                string pal = palabras[i];
+
+
+                for (int j = pal.Length - 1; j >= 0; j--)
+                { 
+                    Console.Write(pal.Substring(j, 1));
+                }
+                Console.Write(" ");
+            }
+        }
+
+
+        static void Frecuencia()
+        {
+            Console.Write("Palabra: ");
+            string palabra = Console.ReadLine();
+
+
+            for (int i = 0; i < palabra.Length; i++)
+            {
+                string letra = palabra.Substring(i, 1);
+                int cuenta = 0;
+
+
+                for (int j = 0; j < palabra.Length; j++)
+                {
+                    if (palabra.Substring(j, 1) == letra)
+                        cuenta++;
+                }
+
+
+                Console.WriteLine(letra + " = " + cuenta);
+            }
+        }
+
+
+        static void Login()
+        {
+            string user = "admin";
+            string pass = "1234";
+
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write("Usuario: ");
+                string u = Console.ReadLine();
+
+
+                Console.Write("Contraseña: ");
+                string c = Console.ReadLine();
+
+
+                if (u == user && c == pass)
+                {
+                    Console.WriteLine("Bienvenido");
+                    return;
+                }
+
+
+                Console.WriteLine("Error");
+            }
+            Console.WriteLine("Bloqueado");
+        }
+
+
+        static void Rangos()
+        {
+            Console.Write("Numero: ");
+            int num = int.Parse(Console.ReadLine());
+
+
+            if (num >= 0 && num <= 25)
+            { 
+                Console.WriteLine("0-25");
+            }
+            else if (num <= 50)
+            { 
+                Console.WriteLine("26-50");
+            }
+            else if (num <= 75)
+            { 
+                Console.WriteLine("51-75");
+            }
+            else if (num <= 100)
+            { 
+                Console.WriteLine("76-100");
+            }
+            else
+                Console.WriteLine("Otro rango");
+        }
+
+
+        static void IMC()
+        {
+            Console.Write("Peso: ");
+            double peso = double.Parse(Console.ReadLine());
+
+
+            Console.Write("Altura: ");
+            double altura = double.Parse(Console.ReadLine());
+
+
+            double imc = peso / (altura * altura);
+
+
+            if (imc < 18.5)
+            { 
+                Console.WriteLine("Bajo peso");
+            }
+            else if (imc < 25)
+            { 
+                Console.WriteLine("Normal");
+            }
+            else if (imc < 30)
+            { 
+                Console.WriteLine("Sobrepeso");
+            }
+            else
+                Console.WriteLine("Obeso");
+            
+        }
+
+
+        static void Piramide()
+        {
+            Console.Write("Palabra: ");
+            string palabra = Console.ReadLine();
+
+
+            for (int i = 1; i <= palabra.Length; i++)
+            { 
+                Console.WriteLine(palabra.Substring(0, i));
+            }
+        }
+
+
+        static void Vocales()
+        {
+            while (true)
+            {
+                Console.Write("Frase: ");
+                string frase = Console.ReadLine();
+
+
+                Console.WriteLine("Escribe 'agusfornite2008' si queres salir");
+
+
+                if (frase == "agusfornite2008" )
+                { 
+                    break;
+                }
+                string[] vocales = { "a", "e", "i", "o", "u" };
+
+
+                for (int v = 0; v < vocales.Length; v++)
+                {
+                    string nueva = "";
+
+
+                    for (int i = 0; i < frase.Length; i++)
+                    {
+                        string letra = frase.Substring(i, 1).ToLower();
+
+
+                        if (letra == "a" || letra == "e" || letra == "i" || letra == "o" || letra == "u")
+                        { 
+                            nueva += vocales[v];
+                        }
+                        else
+                        { 
+                            nueva += frase.Substring(i, 1);
+                        }
+                    }
+                    Console.WriteLine(nueva);
+                }
+            }
+        }
+    }
+}
